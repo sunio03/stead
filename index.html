@@ -74,11 +74,11 @@ nav.top .gbar .cta{margin-left:auto;display:flex;gap:8px}
 .eb.on{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.2);color:var(--text)}
 .ebwrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:56px}
 .tm{padding:40px 0 0}
-.tmcard{position:relative;border-radius:32px;background:#141518;border:1px solid #1E2126;min-height:320px;display:flex;align-items:center;overflow:visible;padding:48px 56px}
+.tmcard{--tmw:min(460px,40%);position:relative;border-radius:32px;background:#141518;border:1px solid #1E2126;min-height:320px;display:flex;align-items:center;overflow:visible;padding:48px calc(var(--tmw) + 72px) 48px 56px}
 .tmtext{position:relative;z-index:1;max-width:520px;display:flex;flex-direction:column;gap:18px}
 .tmtext h2{font-size:clamp(30px,3.6vw,46px)}
 .tm{padding-top:190px}
-.tmk{position:absolute;right:40px;bottom:0;width:min(520px,42%);height:190%;clip-path:inset(-40% -40% 0 -40%);pointer-events:none}
+.tmk{position:absolute;right:40px;bottom:0;width:var(--tmw);height:190%;clip-path:inset(-40% -40% 0 -40%);pointer-events:none}
 .tmk .tmk-in{position:absolute;left:0;right:0;bottom:-6%;transform:translateY(34%) scale(.55);transform-origin:50% 100%;transition:transform 1.5s cubic-bezier(.34,1.25,.64,1)}
 .tmk.grown .tmk-in{transform:none}
 .tmk .tmk-in svg{width:100%;height:auto;display:block}
@@ -89,7 +89,7 @@ footer.big .col{display:flex;flex-direction:column;gap:10px}
 footer.big .col a:hover{color:var(--text)}
 footer.big .base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:24px;border-top:1px solid #121418;font-size:12px}
 @media (max-width:980px){footer.big .cols{grid-template-columns:repeat(2,minmax(0,1fr))}footer.big .cols>div:first-child{grid-column:1/-1}nav.top .gbar{gap:12px}}
-@media (max-width:760px){.tmcard{flex-direction:column;align-items:flex-start;padding:32px 24px 0;min-height:0}.tmk{position:relative;right:auto;width:80%;height:280px;margin:24px auto 0}.tm{padding-top:60px}.krow .kc{width:48px;height:48px}.krow{gap:6px}}
+@media (max-width:760px){.tmcard{flex-direction:column;align-items:stretch;padding:32px 24px 0;min-height:0}.tmk{position:relative;right:auto;bottom:auto;width:min(240px,62%);height:auto;aspect-ratio:1/.94;margin:28px auto 0}.tm{padding-top:60px}.krow .kc{width:48px;height:48px}.krow{gap:6px}}
 nav.top .wrap{height:68px;display:flex;align-items:center;gap:28px}
 .brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:500;letter-spacing:-.05em}
 .links{display:flex;gap:26px;font-size:14px;color:var(--muted)}
@@ -169,6 +169,49 @@ nav.top .cta{margin-left:auto;display:flex;gap:10px}
 .nm .b{opacity:0;transform:translateY(7px)}
 .nm.r .a{opacity:0;transform:translateY(-7px)}.nm.r .b{opacity:1;transform:none}
 
+/* losses: real 2025 scam figures */
+.losses{padding-bottom:40px}
+.lcard{--a:var(--teal);border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg,#0E1013,#08090B);padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden;text-align:left}
+.lcard:before{content:'';position:absolute;inset:0;background:radial-gradient(80% 45% at 50% 0%,color-mix(in srgb,var(--a) 15%,transparent),transparent 70%);pointer-events:none}
+.lcard>*{position:relative}
+.lhead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.lup{letter-spacing:0;padding:4px 10px;border-radius:999px;color:var(--a);border:1px solid color-mix(in srgb,var(--a) 40%,transparent);background:color-mix(in srgb,var(--a) 10%,transparent)}
+.lnum{font-size:clamp(48px,5.4vw,68px);font-weight:500;letter-spacing:-.05em;line-height:1;margin-top:6px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.lnum small{font-size:15px;color:var(--dim);letter-spacing:0;font-weight:400;font-family:'Geist Mono',monospace}
+.lcard p{margin:0;color:var(--muted);line-height:1.5;font-size:15px}
+.lcard p b{color:var(--text);font-weight:500;background:linear-gradient(transparent 60%,color-mix(in srgb,var(--a) 28%,transparent) 0);padding:0 .08em;border-radius:2px}
+.lbars{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.lbar{display:grid;grid-template-columns:36px 1fr 64px;gap:10px;align-items:center;font-family:'Geist Mono',monospace;font-size:11px;color:var(--dim)}
+.lbar>span:last-child{text-align:right}
+.lbar .t{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.lbar .t i{display:block;height:100%;width:0;border-radius:4px;background:var(--line2);transition:width .9s var(--ease),background-color .5s}
+.lbar.now{color:var(--text)}
+.lbar.now .t i{background:var(--a)}
+.lcard.in .lbar .t i{width:var(--w)}
+.lfacts{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid var(--line);padding-top:14px;font-size:12px;color:var(--dim)}
+.lfacts span{display:flex;flex-direction:column;gap:4px}
+.lfacts b{color:var(--text);font-weight:500;font-size:18px;letter-spacing:-.02em}
+.lsrc{margin-top:auto;padding-top:4px;font-family:'Geist Mono',monospace;font-size:11px;color:var(--dim);line-height:1.5}
+.lsrc a{text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
+.lsrc a:hover{color:var(--text)}
+.lnote{margin:48px auto 0;text-align:center;font-size:clamp(22px,2.8vw,32px);letter-spacing:-.025em;line-height:1.3;font-weight:300;color:var(--muted);max-width:820px}
+.lnote b{color:var(--text);font-weight:500}
+html[data-theme="light"] .lcard{background:linear-gradient(180deg,#fff,#F7F7F9)}
+
+.lbox{max-width:980px;margin:48px auto 0;padding:24px 32px 32px;gap:24px}
+.viewsw.ltabs{margin:0 auto;position:relative}
+.ltabs button{display:inline-flex;align-items:center;gap:8px;transition:background .25s,color .25s}
+.ltabs button .cc{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.08em;opacity:.6}
+.lbody{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 56px;align-items:center}
+.lmain,.lside{display:flex;flex-direction:column;gap:14px}
+.lside{border-left:1px solid var(--line);padding-left:56px}
+.lflip{animation:lflip .45s var(--ease) both}
+@keyframes lflip{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.lup{transition:color .5s,border-color .5s,background-color .5s}
+.lnum>span,.lbar>span:last-child,.lfacts b{font-variant-numeric:tabular-nums}
+@media (min-width:761px) and (max-width:980px){.hero .pshow{--pw:min(290px,37vw);gap:40px}.lbox .lbody{gap:20px 32px}.lbox .lside{padding-left:32px}}
+@media (max-width:760px){.lbox{padding:16px 20px 24px}.lbody{grid-template-columns:1fr}.lside{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:18px}}
+@media (max-width:560px){.viewsw.ltabs{width:100%}.ltabs button{flex:1;justify-content:center;padding:7px 8px;white-space:nowrap}.ltabs button .cc{display:none}}
 /* problem */
 .problem{background:#000}
 .pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
@@ -290,6 +333,41 @@ nav.top .cta{margin-left:auto;display:flex;gap:10px}
 .dsteps span.on{background:#fff;color:#000;border-color:#fff}
 .dsteps span.done{color:var(--teal);border-color:rgba(18,194,168,.35)}
 .scrollhint{font-family:'Geist Mono',monospace;font-size:12px;color:var(--dim);margin-top:12px}
+/* hero phone showcase: real screens from the iPhone app */
+.hero{overflow-x:clip}
+.pshow{--pc:#2F80FF;--pw:clamp(240px,calc((100svh - 230px) * .46),320px);display:grid;grid-template-columns:minmax(0,420px) auto;gap:clamp(40px,7vw,104px);align-items:center;justify-content:center;margin:30px auto 0;text-align:left}
+.pcap{display:flex;flex-direction:column;gap:14px;min-height:250px;justify-content:center}
+.pcap .pnum{font-size:12px;letter-spacing:.14em;color:var(--pc);transition:color .5s}
+.pcap h3{font-size:clamp(28px,3.4vw,42px);line-height:1.08;letter-spacing:-.035em}
+.pcap p{margin:0;color:var(--muted);font-size:17px;line-height:1.55}
+.pcap h3 .k{font-style:normal;color:var(--pc);transition:color .5s}
+.pcap .hl{color:var(--text);font-weight:500;background:linear-gradient(transparent 60%,color-mix(in srgb,var(--pc) 30%,transparent) 0);padding:0 .08em;border-radius:2px}
+.ptag{align-self:flex-start;font-family:'Geist Mono',monospace;font-size:12px;padding:7px 12px;border-radius:999px;border:1px solid color-mix(in srgb,var(--pc) 45%,transparent);color:var(--pc);background:color-mix(in srgb,var(--pc) 10%,transparent);transition:color .5s,border-color .5s,background .5s}
+.pbar{height:2px;border-radius:2px;background:var(--line);overflow:hidden;margin-top:8px;width:min(260px,100%)}
+.pbar i{display:block;height:100%;background:var(--pc);transform-origin:left;animation:pbar 4.2s linear both}
+@keyframes pbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.pcap.swap>*{animation:capin .6s var(--ease) both}
+.pcap.swap>*:nth-child(2){animation-delay:.04s}.pcap.swap>*:nth-child(3){animation-delay:.08s}.pcap.swap>*:nth-child(4){animation-delay:.12s}
+@keyframes capin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pstage{position:relative;display:flex;justify-content:center}
+.pglow{position:absolute;inset:6% -30%;background:radial-gradient(closest-side,color-mix(in srgb,var(--pc) 34%,transparent),transparent 75%);filter:blur(28px);transition:background .8s;pointer-events:none}
+.phone{position:relative;width:var(--pw);padding:calc(var(--pw) * .035);border-radius:calc(var(--pw) * .17);background:linear-gradient(145deg,#454b54,#16191d 35%,#2c3037 65%,#0c0e11);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 0 0 1.5px #040506,0 50px 100px rgba(0,0,0,.65)}
+.phone:before,.phone:after{content:'';position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#20242a,#4a5059)}
+.phone:before{left:-3px;top:22%;height:7%;box-shadow:0 calc(var(--pw) * .17) 0 #3c4149}
+.phone:after{right:-3px;top:30%;height:11%;background:linear-gradient(270deg,#20242a,#4a5059)}
+.pscreen{position:relative;aspect-ratio:1206/2622;border-radius:calc(var(--pw) * .135);overflow:hidden;background:#000;isolation:isolate}
+.pscreen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.035);transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.pscreen img.on{opacity:1;transform:none}
+.pscreen:after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.07),rgba(255,255,255,0) 32%)}
+.island{position:absolute;z-index:3;left:50%;transform:translateX(-50%);top:calc(var(--pw) * .93 * .035);width:24%;height:calc(var(--pw) * .93 * .09);border-radius:999px;background:#000}
+html[data-theme="light"] .phone{box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 0 0 1.5px #040506,0 40px 80px rgba(20,22,40,.28)}
+@media (max-width:760px){
+  .pshow{grid-template-columns:1fr;gap:28px;text-align:center;--pw:min(280px,72vw);margin-top:18px}
+  .pstage{order:-1}
+  .pcap{align-items:center;min-height:0}
+  .ptag{align-self:center}
+  .pglow{inset:4% -10%}
+}
 .caret{display:inline-block;width:2px;height:16px;background:#E8EAED;vertical-align:-3px;margin-left:2px;animation:caret 1s steps(1) infinite}
 @keyframes caret{50%{opacity:0}}
 .sys{align-self:center;display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid #22262D;background:#101215;font-size:12px;color:var(--muted)}
@@ -660,26 +738,22 @@ html[data-theme="light"] .eb.on.ct{background:#0B0D10;color:#fff;border-color:#0
 
     <div class="demo-scroll" id="demoScroll"><div class="demo-sticky">
     <div class="dsteps" id="dSteps"></div>
-    <div class="window" id="demo">
-      <div class="wbar"><span class="d" style="background:#FF5F57"></span><span class="d" style="background:#FEBC2E"></span><span class="d" style="background:#28C840"></span><span class="st" id="dSt">Simulated incoming SMS · demo</span></div>
-      <div class="wbody">
-        <div class="wside">
-          <div class="wrow" style="padding-bottom:12px;color:var(--text);font-size:16px;font-weight:500;letter-spacing:-.04em"><span data-k='{"size":24,"tile":true}'></span>stead.</div>
-          <div class="wlbl">Margaret · messages</div>
-          <div class="wrow act" id="dRow"><span id="dRowK"></span><span class="t">Parcel notice</span><span class="e" id="dRowE">New</span></div>
-          <div class="wrow"><span data-k='{"size":22,"color":"#FF3D9A","eyes":"happy","blink":false}'></span><span class="t">Pharmacy reminder</span><span class="e">Note</span></div>
-          <div class="wrow"><span data-k='{"size":22,"color":"#12C2A8","eyes":"happy","blink":false}'></span><span class="t">Toll fine</span><span class="e">Resolved</span></div>
-          <div class="weng"><span class="mono" style="font-size:10px;color:var(--dim)">FAMILY · CONSENT GIVEN</span><span class="r"><span>Daniel · son</span><span style="color:var(--teal)">●</span></span><span class="r"><span>Grace · niece</span><span style="color:var(--teal)">●</span></span><span class="r"><span>Sharing</span><span class="mono" style="color:var(--amber);font-size:10px">summaries only</span></span></div>
+    <div class="pshow" id="demo">
+      <div class="pcap" aria-live="polite">
+        <span class="pnum mono" id="pNum">01 / 06</span>
+        <h3 id="pTitle">Every new message gets a quiet check.</h3>
+        <p id="pBody"></p>
+        <span class="ptag" id="pTag"></span>
+        <div class="pbar" aria-hidden="true"><i id="pBar"></i></div>
+      </div>
+      <div class="pstage">
+        <div class="pglow" aria-hidden="true"></div>
+        <div class="phone">
+          <div class="pscreen" id="pScreen"><span class="island" aria-hidden="true"></span></div>
         </div>
-        <div class="wmain" id="dMain">
-          <div class="whead">Parcel notice<span class="p">SMS · simulated</span></div>
-          <div class="wthread" id="dThread"></div>
-          <div class="wcomp" id="dComp">Message from +1 555 0142</div>
-        </div>
-        <div class="wpanel" id="dPanel"><div class="wpin" id="dPin"></div></div>
       </div>
     </div>
-    <div class="scrollhint">Plays on its own · click a step to jump to it · sample data</div>
+    <div class="scrollhint">Real screens from the Stead iPhone app · sample data · tap a step to jump to it</div>
     </div></div>
   </div>
 </header>
@@ -693,6 +767,33 @@ html[data-theme="light"] .eb.on.ct{background:#0B0D10;color:#fff;border-color:#0
       </div>
       <div class="tmk" id="tmK"></div>
     </div>
+  </div>
+</section>
+
+<section class="losses" id="losses">
+  <div class="wrap">
+    <div class="eyebrow center reveal" style="text-align:center">The cost</div>
+    <h2 class="center reveal" style="text-align:center;margin-top:16px;max-width:980px">Scam losses hit records in 2025. <span class="soft">Older adults lose the most.</span></h2>
+    <p class="lead reveal" style="text-align:center;margin:20px auto 0">Real figures from the FBI and national police. Every one of them grew in a single year.</p>
+    <div class="lcard lbox reveal" id="lBox" style="--a:var(--red)">
+      <div class="viewsw ltabs" role="tablist" aria-label="Choose a country" id="lTabs"></div>
+      <div class="lbody" id="lBody" role="tabpanel" aria-live="polite">
+        <div class="lmain">
+          <div class="lhead"><span><span data-l="k">United States</span> · 2025</span><span class="lup" data-l="up">+59%</span></div>
+          <div class="lnum"><span data-l="num">$7.7B</span><small data-l="sub"></small></div>
+          <p data-l="p">lost by <b>Americans aged 60+</b> to online scams and fraud reported to the FBI.</p>
+        </div>
+        <div class="lside">
+          <div class="lbars" role="img" data-l="bl" aria-label="Losses for people aged 60 and over: $4.9 billion in 2024, $7.7 billion in 2025">
+            <div class="lbar"><span>2024</span><span class="t"><i data-l="w0" style="--w:63%"></i></span><span data-l="v0">$4.9B</span></div>
+            <div class="lbar now"><span>2025</span><span class="t"><i style="--w:100%"></i></span><span data-l="v1">$7.7B</span></div>
+          </div>
+          <div class="lfacts"><span><span data-l="f0">All ages</span><b data-l="g0">$20.9B</b></span><span><span data-l="f1">Avg. per victim 60+</span><b data-l="g1">$38K+</b></span></div>
+          <div class="lsrc">Source: <a data-l="src" href="https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf" target="_blank" rel="noopener">FBI IC3, 2025 Internet Crime Report</a></div>
+        </div>
+      </div>
+    </div>
+    <p class="lnote reveal">And that’s only what gets reported. <b>Stead steps in before the money moves.</b></p>
   </div>
 </section>
 
@@ -862,45 +963,80 @@ $$('[data-k]').forEach(el=>el.innerHTML=kitten(JSON.parse(el.dataset.k)));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 $$('.reveal').forEach(el=>io.observe(el));
 
-// ---------- hero demo: one simulated message, from arrival to resolved
-const SIGS=[['“within 30 minutes”','Urgent deadline','High'],['“Pay a small delivery fee”','Payment request','High'],['delivery-pay.example','Unverified link','High'],['“Your parcel is on hold”','Claims to be a courier','Med']];
-const DSTEPS=['Arrives','Review','Explain','Ask family','Checking','Resolved'];
-$('#dSteps').innerHTML=DSTEPS.map(s=>`<span>${s}</span>`).join('');
-const SMS='Your parcel is on hold. Pay a small delivery fee within 30 minutes: delivery-pay.example/track';
-const G='Daniel';
-let dStep=-1;
-function dRender(n){
-  const th=$('#dThread'),pin=$('#dPin'),pan=$('#dPanel'),st=$('#dSt'),main=$('#dMain'),comp=$('#dComp');
-  $$('#dSteps span').forEach((s,i)=>s.className=i<n?'done':i===n?'on':'');
-  main.style.setProperty('--glow',['#211B52','#123232','#3A2A10','#211B52','#211B52','#123232'][n]);
-  $('#dRowK').innerHTML=kitten({size:22,color:['#F2F3F5','#12C2A8','#FF6B1A','#8B5CF6','#8B5CF6','#12C2A8'][n],eyes:['neutral','side','tall','up','up','happy'][n],blink:false});
-  $('#dRowE').textContent=['New','Reviewing','Warning','Shared','Checking','Resolved'][n];
-  st.textContent=['Simulated incoming SMS · demo','Stead is reviewing this message','3 warning signs · nothing paid','Shared with '+G+' · with your permission','Your family is checking',G+' checked independently · case resolved'][n];
-  st.style.color=n===2?'var(--amber)':n===5?'var(--teal)':'var(--muted)';
-  comp.innerHTML=n<2?'Message from +1 555 0142':n===2?`<span style="color:var(--text)">Ask ${G} to check</span><span class="caret"></span>`:'Your family is here to help';
-  let h=`<div class="umsg in"><div class="pdf"><span class="ic">SMS</span><span>+1 555 0142<small style="color:var(--dim)">Simulated message · just now</small></span></div><div class="bubble">${SMS}</div></div>`;
-  if(n===0)h+=`<div class="sys">${kitten({size:16,blink:false})} Stead is ready to review safety alerts</div>`;
-  if(n===1)h+=`<div class="bot min">${kitten({size:34,color:'#12C2A8',eyes:'side',scan:true})}<div>Let me look at this one with you…<span class="note">Real AI review · no links opened</span></div></div>`;
-  if(n>=2)h+=`<div class="bot ${n===2?'':'min'}">${kitten({size:34,color:'#FF6B1A',badge:'alert'})}<div><b>Let’s check this first.</b> This message asks you to pay quickly through a link we can’t verify. Check your delivery in the courier’s official app before paying.<span class="note">We can’t know if the parcel is really delayed</span></div></div>`;
-  if(n>=3)h+=`<div class="sys">${kitten({size:16,blink:false})} You asked ${G} to check · he sees a short summary, not your messages</div>`;
-  if(n===3)h+=`<div class="bot min">${kitten({size:34,color:'#8B5CF6',eyes:'up'})}<div class="typing"><i></i><i></i><i></i></div></div>`;
-  if(n===4)h+=`<div class="bot">${kitten({size:34,color:'#8B5CF6',eyes:'up'})}<div><b>Your family is checking.</b> ${G} is looking into it. Please don’t pay or tap the link for now.<span class="note">${G} tapped “I’m checking” · 1 min ago</span></div></div>`;
-  if(n===5)h+=`<div class="bot">${kitten({size:34,color:'#12C2A8',eyes:'happy'})}<div><b>${G} checked for you.</b> The courier’s official app shows no fee on your parcel. You can ignore this message.<span class="note">Resolved by ${G} · verified through the courier’s own app</span></div></div>`;
-  th.innerHTML=h;
-  if(n===1||n===2){
-    pin.innerHTML=`<div class="ph">${n===1?kitten({size:48,color:'#12C2A8',eyes:'side',scan:true}):kitten({size:48,color:'#FF6B1A',badge:'alert'})}<div><div class="tt">${n===1?'Looking for warning signs':'Concern: high'}</div><span class="note">${n===1?'Reading the message, not opening anything':'Qualitative concern, not a fraud score'}</span></div></div>
-      <div class="doc"><div class="drow th"><span>#</span><span>In the message</span><span>Signal</span><span>Level</span></div>${SIGS.map((r,i)=>`<div class="drow"><span style="color:#5A606B">${i+1}</span><span class="who ${n===2?'v':''}" id="dw${i}"><span class="real">${r[0]}</span><span class="tok">${r[1]}</span></span><span>${n===2?r[0]:'…'}</span><span class="mono" style="color:#5A606B">${n===2?r[2]:'—'}</span></div>`).join('')}${n===1?'<div class="sweep go"></div>':''}</div>
-      <div class="fi in"><span>Warning signs</span><span class="n" id="dn0">${n===2?SIGS.length:0}</span></div><div class="fi in"><span>Safe next step</span><span class="n" style="font-size:12px">Courier’s own app</span></div>
-      ${n===2?`<button class="wbtn in">Ask ${G} to check</button>`:''}`;
-    pan.classList.add('open');
-  } else pan.classList.remove('open');
+// ---------- hero showcase: real screens from the Stead iPhone app (sample data)
+const PSHOW=[
+ {k:'Checks',img:'05-needs-a-look',c:'#2F80FF',t:'Every message gets a <i class="k">quiet check</i>.',b:'Normal messages <span class="hl">never leave the phone</span>. Suspicious ones land in “Needs a look”.',g:'Worth a look · Be careful · Stop',alt:'Stead home screen listing three flagged messages: Stop and talk to family, Be careful, and Worth a look'},
+ {k:'Explain',img:'09-parcel-scam-warning',c:'#FFB020',t:'Warning signs, in <i class="k">plain words</i>.',b:'A fake parcel fee? Stead names <span class="hl">every warning sign</span> it noticed, and reads them aloud.',g:'No “safe” label · no scam score',alt:'Be careful: possible fake government notice, with six warning signs listed'},
+ {k:'Next step',img:'07-safe-next-step',c:'#12C2A8',t:'One <i class="k">safe</i> next step.',b:'What Stead can’t confirm, <span class="hl">one safe thing to do</span>, and family one tap away.',g:'Links stay unclickable inside Stead',alt:'What Stead can’t confirm, a safe next step, and an Ask family to check button'},
+ {k:'Family code',img:'11-family-code-check',c:'#2F80FF',t:'Hacked accounts can’t fake the <i class="k">family code</i>.',b:'“Mum, transfer RM3000 now.” Stead asks for Daniel’s code first. <span class="hl">Only the real Daniel</span> can open it.',g:'Stops “it’s me, new number” scams',alt:'Stead asks Mum to get Daniel’s six-digit family code before sending money'},
+ {k:'Stop',img:'04-home-warning',c:'#FF3B4E',t:'When it’s serious, Stead says <i class="k">stop</i>.',b:'A bank code right after a scam? Stead turns red and says <span class="hl">call family first</span>.',g:'Family gets a heads-up, with consent',alt:'Stead home screen in red: Stop. Talk to family first'},
+ {k:'Family',img:'10-family',c:'#12C2A8',t:'Family helps, <i class="k">without reading chats</i>.',b:'Mum picks her circle. They see a <span class="hl">short summary</span>, never her messages.',g:'Consent first · summaries only',alt:'Stead family screen with Daniel in Mum’s circle and how the family code works'}
+];
+$('#pScreen').insertAdjacentHTML('afterbegin',PSHOW.map((s,i)=>`<img src="assets/app/${s.img}.webp" alt="${s.alt}" width="390" height="848" decoding="async"${i?'':' fetchpriority="high"'}>`).join(''));
+$('#dSteps').innerHTML=PSHOW.map(s=>`<span role="button" tabindex="0">${s.k}</span>`).join('');
+let pN=0,pT;
+function pGo(n,dur=4200){
+  pN=n;const s=PSHOW[n],cap=$('.pcap'),bar=$('#pBar');
+  $$('#dSteps span').forEach((sp,i)=>{sp.className=i<n?'done':i===n?'on':'';sp.setAttribute('aria-pressed',i===n);});
+  $$('#pScreen img').forEach((im,i)=>im.classList.toggle('on',i===n));
+  $('#demo').style.setProperty('--pc',s.c);
+  $('#pNum').textContent=`0${n+1} / 0${PSHOW.length}`;$('#pTitle').innerHTML=s.t;$('#pBody').innerHTML=s.b;$('#pTag').textContent=s.g;
+  cap.classList.remove('swap');void cap.offsetWidth;cap.classList.add('swap');
+  bar.style.animation='none';void bar.offsetWidth;bar.style.animation='';bar.style.animationDuration=dur+'ms';
+  clearTimeout(pT);pT=setTimeout(()=>pGo((pN+1)%PSHOW.length),dur);
 }
-function dHits(f){const k=Math.round(Math.max(0,Math.min(1,f))*SIGS.length);SIGS.forEach((r,i)=>{const e=$('#dw'+i+' .real');if(e)e.classList.toggle('hit',i<k);});const n=$('#dn0');if(n)n.textContent=k;}
-let dN=0,dPause=0;
-function dGo(n){dN=n;dStep=n;dRender(n);if(n===1){let k=0;const t=setInterval(()=>{k++;if(dStep!==1||k>SIGS.length){clearInterval(t);return;}dHits(k/SIGS.length);},420);}}
-$$('#dSteps span').forEach((sp,i)=>sp.onclick=()=>{dPause=Date.now()+9000;dGo(i);});
-setInterval(()=>{if(Date.now()<dPause)return;dGo((dN+1)%6);},3200);
-dGo(0);
+$$('#dSteps span').forEach((sp,i)=>{sp.onclick=()=>pGo(i,9000);sp.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pGo(i,9000);}};});
+pGo(0);
+// ---------- the cost: real 2025 scam losses. The panel stays put; only the figures change.
+const LOSS=[
+ {k:'United States',cc:'US',a:'var(--red)',up:'+59%',num:'$7.7B',sub:'',p:'lost by <b>Americans aged 60+</b> to online scams and fraud reported to the FBI.',bl:'Losses for people aged 60 and over: $4.9 billion in 2024, $7.7 billion in 2025',w0:63,v0:'$4.9B',v1:'$7.7B',f0:'All ages',g0:'$20.9B',f1:'Avg. per victim 60+',g1:'$38K+',src:['https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf','FBI IC3, 2025 Internet Crime Report']},
+ {k:'South Korea',cc:'KR',a:'var(--amber)',up:'+47%',num:'₩1.26T',sub:'≈ $925M',p:'lost to <b>voice phishing</b>, the first time losses passed ₩1 trillion in a year.',bl:'Voice phishing losses: 854.5 billion won in 2024, 1.26 trillion won in 2025',w0:68,v0:'₩854.5B',v1:'₩1.26T',f0:'Cases',g0:'23,360',f1:'Avg. per case',g1:'≈ ₩54M',src:['https://biz.heraldcorp.com/article/10884739','Korean National Police Agency, via The Herald Business (Sept 2026)']},
+ {k:'Malaysia',cc:'MY',a:'var(--orange)',up:'2×',num:'RM2.9B+',sub:'',p:'lost to <b>online scams</b>, more than double the year before.',bl:'Online scam losses: 1.5 billion ringgit in 2024, over 2.9 billion ringgit in 2025',w0:52,v0:'RM1.5B',v1:'RM2.9B+',f0:'Cases',g0:'74,744',f1:'Up from',g1:'35,470',src:['https://dayakdaily.com/online-scam-cases-more-than-double-from-35470-in-2024-to-74744-in-2025/','Royal Malaysia Police (CCID), via DayakDaily (May 2026)']}
+];
+$('#lTabs').innerHTML=LOSS.map((c,i)=>`<button type="button" role="tab" id="lt${i}" aria-controls="lBody" aria-selected="false" tabindex="-1"><span class="cc">${c.cc}</span>${c.k}</button>`).join('');
+const L=k=>$(`#lBox [data-l="${k}"]`);
+const lCalm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// swap one piece of text in place with a small fade, only if it actually changed
+function lSwap(el,html){if(el.innerHTML===html)return;el.innerHTML=html;el.classList.remove('lflip');void el.offsetWidth;el.classList.add('lflip');}
+// count a figure like "$7.7B", "₩854.5B", "23,360" or "≈ ₩54M" up to its value, keeping its format
+function lCount(el,str){
+  if(el.dataset.v===str)return;el.dataset.v=str;
+  const m=str.match(/^(.*?)(\d[\d,]*(?:\.\d+)?)(.*)$/);
+  if(!m||lCalm){el.textContent=str;return;}
+  const [,pre,raw,post]=m,to=parseFloat(raw.replace(/,/g,'')),dec=(raw.split('.')[1]||'').length,commas=raw.includes(',');
+  const fmt=v=>{let s=v.toFixed(dec);if(commas)s=Number(s).toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});return pre+s+post;};
+  const t0=performance.now(),dur=750;cancelAnimationFrame(el._raf);
+  const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=k<1?fmt(to*e):str;if(k<1)el._raf=requestAnimationFrame(step);};
+  el._raf=requestAnimationFrame(step);
+}
+function lGo(n,focus){
+  const c=LOSS[n];
+  $$('#lTabs button').forEach((b,i)=>{const on=i===n;b.classList.toggle('on',on);b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;if(on&&focus)b.focus();});
+  $('#lBox').style.setProperty('--a',c.a);$('#lBody').setAttribute('aria-labelledby','lt'+n);
+  ['num','v0','v1','g0','g1'].forEach(k=>lCount(L(k),c[k]));
+  ['k','up','sub','p','f0','f1'].forEach(k=>lSwap(L(k),c[k]));
+  L('w0').style.setProperty('--w',c.w0+'%');L('bl').setAttribute('aria-label',c.bl);
+  const a=L('src');if(a.getAttribute('href')!==c.src[0]){a.href=c.src[0];lSwap(a,c.src[1]);}
+}
+$$('#lTabs button').forEach((b,i)=>{b.onclick=()=>lGo(i);b.onkeydown=e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){e.preventDefault();lGo((i+d+LOSS.length)%LOSS.length,true);}};});
+// first view: the figures are already in the page; just mark the US tab and remember the values
+$$('#lTabs button')[0].classList.add('on');$$('#lTabs button')[0].setAttribute('aria-selected','true');$$('#lTabs button')[0].tabIndex=0;$('#lBody').setAttribute('aria-labelledby','lt0');
+['num','v0','v1','g0','g1'].forEach(k=>L(k).dataset.v=LOSS[0][k]);
+// ---------- keep layouts steady while content changes: reserve the height of the tallest version
+function lockHeight(el,variants,fill){
+  const c=el.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));c.setAttribute('aria-hidden','true');
+  Object.assign(c.style,{position:'absolute',visibility:'hidden',pointerEvents:'none',left:'0',top:'0',width:el.getBoundingClientRect().width+'px',minHeight:'0'});
+  el.parentElement.appendChild(c);
+  let max=0;variants.forEach(v=>{fill(c,v);max=Math.max(max,c.getBoundingClientRect().height);});
+  c.remove();el.style.minHeight=Math.ceil(max)+'px';
+}
+function steady(){
+  lockHeight($('.pcap'),PSHOW,(c,s)=>{c.querySelector('h3').innerHTML=s.t;c.querySelector('p').innerHTML=s.b;c.querySelector('.ptag').textContent=s.g;});
+  lockHeight($('#lBody'),LOSS,(c,d)=>{const q=k=>c.querySelector(`[data-l="${k}"]`);
+    ['k','up','sub','p','f0','f1'].forEach(k=>q(k).innerHTML=d[k]);['num','v0','v1','g0','g1'].forEach(k=>q(k).textContent=d[k]);q('src').textContent=d.src[1];});
+}
+let steadyT;addEventListener('resize',()=>{clearTimeout(steadyT);steadyT=setTimeout(steady,150);});
+steady();document.fonts&&document.fonts.ready.then(steady);
 // warning-sign demo plays when it comes into view
 const LEAK=[...$$('#leakDemo .lk')];
 function leakSet(n){LEAK.forEach((l,i)=>l.classList.toggle('sent',i<n));$('#leakCount').textContent=n;$('#leakLog').innerHTML=n?LEAK.slice(0,n).map(l=>`<div class="ll"><span>${l.dataset.sig} · </span>${l.textContent}</div>`).join(''):'<div class="ll"><span>reading the message…</span></div>';}
